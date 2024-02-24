@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, session
 from functionalities.displayAll import *
 from functionalities.createPost import *
 from functionalities.signUp import *
@@ -6,8 +6,12 @@ from functionalities.signUp import *
 from utils.db import db
 from utils.seed import *
 
+SESSION_WILL_BE_VALID = 1  # day
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog_management.db'
+app.secret_key = config('DebmalyaArshia')
+app.permanent_session_lifetime = timedelta(days=SESSION_WILL_BE_VALID)
 db.init_app(app)
 
 @app.route('/seed')
@@ -47,6 +51,13 @@ def create():
 def blog():
     return render_template('blog.html')
 
+@app.route('/logout')
+def logout():
+    if "userName" in session:
+        session.pop('userName', None)
+        return redirect(url_for("home"))
+    else:
+        return redirect(url_for("home"))
 
 if __name__ == '__main__':
     with app.app_context():
