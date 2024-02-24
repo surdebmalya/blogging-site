@@ -26,10 +26,15 @@ this function is for displaying all the blog posts on opening the app
 @app.route('/')
 @app.route('/home')
 def home():
-    # data = display_all()
-    # print(data)
-    # return render_template('home.html', data=data, length = len(data))
-    return jsonify(display_all())
+    data = display_all()
+    print(data)
+    try:
+        flag = session['userName']
+        flag = 1
+    except:
+        flag = 0
+    return render_template('home.html', data=data, length = len(data), flag=flag)
+    # return jsonify(display_all())
 
 @app.route('/login', methods = ['POST'])
 def login():
