@@ -78,9 +78,23 @@ this function is for creating a new post for a logged in user
 def create():
     return jsonify(create_post())
 
-@app.route('/blog')
-def blog():
-    return render_template('blog.html')
+@app.route('/blog/<string:blogId>')
+def blog(blogId):
+    # author,title,body 
+    blogs = AllBlogs.query.all()
+    print ("*************************************************")
+    print (blogs[0].userName)
+    for blog in blogs:
+        if blog.blogId== blogId:
+            userName= blog.userName
+            break
+
+    blogDetail= Blog.query.get(blogId)
+    title = blogDetail.title
+    body = blogDetail.body
+
+    return render_template('blog.html', title=title, author=userName, content=body)
+
 
 @app.route('/logout')
 def logout():
