@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="static/blog.ico" type="image/x-icon">
+    <link rel="stylesheet" href="static/loginSignup.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Login - Bloggy</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar p-4 flex justify-between items-center">
+        <div class="text-white text-2xl font-bold">Bloggy</div>
+        <a href="/signup"><button class="text-white px-4 py-2 rounded">Signup</button></a>
+    </nav>
+
+    <!-- Login Container -->
+    <div class="login-container mt-8">
+        <div class="login-header">
+            <h1 class="text-2xl font-bold">Login to Bloggy</h1>
+        </div>
+
+        <!-- Login Form -->
+        <form class="login-form">
+            <div>
+                <label for="username" class="block text-gray-700">Username</label>
+                <input type="text" id="username" name="username" class="form-input" placeholder="Enter your username"
+                    required>
+            </div>
+
+            <div>
+                <label for="password" class="block text-gray-700">Password</label>
+                <input type="password" id="password" name="password" class="form-input"
+                    placeholder="Enter your password" required>
+            </div>
+
+            <button type="submit" class="login-button">Login</button>
+        </form>
+
+        <div class="sign-up-link">
+            <p>Don't have any account? <a href="/signup" class="underline">Signup now</a></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-8">
+        <p>&copy; 2024 Bloggy. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
