@@ -14,8 +14,11 @@
     <!-- Navbar -->
     <nav class="navbar p-4 flex justify-between items-center">
         <div class="text-white text-2xl font-bold">Bloggy</div>
+        {% if flag==1 %}
         <a href="/login"><button class="text-white px-4 py-2 rounded">Login / Signup</button></a>
-        <!-- <button class="text-white px-4 py-2 rounded logout">Logout</button> -->
+        {% elif flag==0 %}
+        <button class="text-white px-4 py-2 rounded logout">Logout</button>
+        {% endif %}
     </nav>
 
     <!-- Body -->
