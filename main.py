@@ -4,11 +4,10 @@ from functionalities.displayAll import *
 from functionalities.createPost import *
 from functionalities.signUp import *
 from functionalities.login import *
-
 from utils.db import db
 from utils.seed import *
 
-SESSION_WILL_BE_VALID = 1  # day
+SESSION_WILL_BE_VALID = 1 # day
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog_management.db'
@@ -31,10 +30,16 @@ def home():
     return render_template('home.html', data=data, length = len(data))
     # return jsonify(display_all())
 
+"""
+this function will help to show the error message to the users
+"""
 @app.route('/error')
 def error():
     return render_template('error.html')
 
+"""
+here all login functionalities will be added
+"""
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     if request.method == 'GET':
@@ -52,6 +57,9 @@ def login():
             return redirect(url_for("error"))
     # return jsonify(log_in())
 
+"""
+here all signup functionalities will be added
+"""
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method== 'GET':
@@ -70,18 +78,33 @@ def signup():
             return redirect(url_for("error"))
     # return jsonify(sign_up())
 
-
 """
-this function is for creating a new post for a logged in user
+render the blog
 """
-@app.route('/createPost', methods=['POST'])
-def create():
-    return jsonify(create_post())
-
 @app.route('/blog')
 def blog():
     return render_template('blog.html')
 
+"""
+jot down all the writing activities
+"""
+@app.route('/write', methods=['GET', 'POST'])
+def write():
+    if request.method == 'GET':
+        if "userName" in session:
+            return render_template('blog_create.html')
+        else:
+            return redirect(url_for("home"))
+    elif request.method == 'POST':
+        pass
+
+@app.route('/createPost', methods=['POST'])
+def create():
+    return jsonify(create_post())
+
+"""
+logout
+"""
 @app.route('/logout')
 def logout():
     if "userName" in session:
