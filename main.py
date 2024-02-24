@@ -20,8 +20,10 @@ this function is for displaying all the blog posts on opening the app
 @app.route('/')
 @app.route('/home')
 def home():
-    #return render_template('home.html')
-    return jsonify(display_all())
+    data = display_all()
+    print(data)
+    return render_template('home.html', data=data, length = len(data))
+    # return jsonify(display_all())
 
 @app.route('/login')
 def login():
@@ -39,6 +41,10 @@ this function is for creating a new post for a logged in user
 @app.route('/createPost', methods=['POST'])
 def create():
     return jsonify(create_post())
+
+@app.route('/blog')
+def blog():
+    return render_template('blog.html')
 
 
 if __name__ == '__main__':
