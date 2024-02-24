@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, session, redirect, url_for
+from flask import Flask, jsonify, render_template, session, redirect, url_for, request
 from datetime import timedelta
 from functionalities.displayAll import *
 from functionalities.createPost import *
@@ -28,24 +28,37 @@ this function is for displaying all the blog posts on opening the app
 def home():
     data = display_all()
     print(data)
-    try:
-        flag = session['userName']
-        flag = 0
-    except:
-        flag = 1
-    print(flag)
-    return render_template('home.html', data=data, length = len(data), flag=flag)
+    return render_template('home.html', data=data, length = len(data))
     # return jsonify(display_all())
 
-@app.route('/login', methods = ['POST'])
-def login():
-    #return render_template('login.html')
-    return jsonify(log_in())
+@app.route('/error')
+def error():
+    return render_template('error.html')
 
-@app.route('/signup', methods=['POST'])
+@app.route('/login', methods = ['GET', 'POST'])
+def login():
+    if request.method == 'GET':
+        if "userName" in session:
+            return redirect(url_for("home"))
+        else:
+            return render_template('login.html')
+    elif request.method == 'POST':
+        userName = request.form["username"]
+        password = request.form["password"]
+        res = log_in(userName, password)
+        if res=="SUCCESS":
+            return redirect(url_for("home"))
+        else:
+            return redirect(url_for("error"))
+    # return jsonify(log_in())
+
+@app.route('/signup', methods=['GET', 'POST'])
 def signup():
-    return jsonify(sign_up())
-    #return render_template('signup.html')
+    if "userName" in session:
+        return redirect(url_for("home"))
+    else:
+        return render_template('signup.html')
+    # return jsonify(sign_up())
 
 
 """

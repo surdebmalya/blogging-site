@@ -17,7 +17,7 @@
 
     <!-- Navbar -->
     <nav class="navbar p-4 flex justify-between items-center">
-        <div class="text-white text-2xl font-bold">Bloggy</div>
+        <a href="/"><div class="text-white text-2xl font-bold">Bloggy</div></a>
         <a href="/signup"><button class="text-white px-4 py-2 rounded">Signup</button></a>
     </nav>
 
@@ -28,7 +28,7 @@
         </div>
 
         <!-- Login Form -->
-        <form class="login-form">
+        <form class="login-form" method="post" action="/login">
             <div>
                 <label for="username" class="block text-gray-700">Username</label>
                 <input type="text" id="username" name="username" class="form-input" placeholder="Enter your username"
