@@ -54,10 +54,20 @@ def login():
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
-    if "userName" in session:
-        return redirect(url_for("home"))
-    else:
-        return render_template('signup.html')
+    if request.method== 'GET':
+        if "userName" in session:
+            return redirect(url_for("home"))
+        else:
+            return render_template('signup.html')
+    elif request.method == 'POST':
+        userName = request.form["username"]
+        email = request.form["email"]
+        password = request.form["password"]
+        res = sign_up(userName, email, password)
+        if res=="SUCCESS":
+            return redirect(url_for("home"))
+        else:
+            return redirect(url_for("error"))
     # return jsonify(sign_up())
 
 

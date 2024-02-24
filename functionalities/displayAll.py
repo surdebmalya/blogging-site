@@ -15,6 +15,7 @@ def display_all():
         blogImageURI=blogData.imageURI
         post={}
         post["userName"] = userName
+        post["blogId"] = blogId
         post["title"] = blogTitle
         post["body"] = blogBody
         post["imageURI"] = blogImageURI
