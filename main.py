@@ -1,5 +1,8 @@
 from flask import Flask, jsonify, render_template
 from functionalities.displayAll import *
+from functionalities.createPost import *
+from functionalities.signUp import *
+
 from utils.db import db
 from utils.seed import *
 
@@ -26,9 +29,10 @@ def home():
 def login():
     return render_template('login.html')
 
-@app.route('/signup')
+@app.route('/signup', methods=['POST'])
 def signup():
-    return render_template('signup.html')
+    return jsonify(sign_up())
+    #return render_template('signup.html')
 
 
 """
@@ -36,7 +40,7 @@ this function is for creating a new post for a logged in user
 """
 @app.route('/createPost', methods=['POST'])
 def create():
-    return jsonify(createPost())
+    return jsonify(create_post())
 
 @app.route('/blog')
 def blog():
@@ -45,6 +49,6 @@ def blog():
 
 if __name__ == '__main__':
     with app.app_context():
-        db.drop_all()
+        #db.drop_all()
         db.create_all()
     app.run(debug=True)

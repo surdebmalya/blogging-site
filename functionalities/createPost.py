@@ -12,15 +12,14 @@ def create_post():
         imageURI= None
     blogId=time.time()
     blogId=str(blogId)
-    newBlog= Blog(bloId, title, body, imageURI)
-    newPost=AllBlogs(userName,blogId)
+    newBlog= Blog(blogId=blogId, title=title, body=body, imageURI=imageURI)
+    newPost=AllBlogs(userName=userName,blogId=blogId)
     db.session.add(newBlog)
     db.session.add(newPost)
-    result={}
     try:
         db.session.commit()
-        result['message'] = 'Success'
+        result ='Success'
     except:
-        result['error'] = 'Database Commit Error'
+        result= 'Database Commit Error'
     
     return result
