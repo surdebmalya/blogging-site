@@ -79,15 +79,12 @@ def signup():
     # return jsonify(sign_up())
 
 """
-render the blog
-"""
-@app.route('/blog')
-def blog():
-    return render_template('blog.html')
-
-"""
 jot down all the writing activities
 """
+@app.route('/createPost', methods=['POST'])
+def create():
+    return jsonify(create_post())
+
 @app.route('/write', methods=['GET', 'POST'])
 def write():
     if request.method == 'GET':
@@ -98,10 +95,9 @@ def write():
     elif request.method == 'POST':
         pass
 
-@app.route('/createPost', methods=['POST'])
-def create():
-    return jsonify(create_post())
-
+"""
+blog rendering
+"""
 @app.route('/blog/<string:blogId>')
 def blog(blogId):
     # author,title,body 
@@ -123,7 +119,6 @@ def blog(blogId):
 """
 logout
 """
-
 @app.route('/logout')
 def logout():
     if "userName" in session:
