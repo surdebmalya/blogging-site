@@ -16,11 +16,10 @@ def create_post():
     newPost=AllBlogs(userName=userName,blogId=blogId)
     db.session.add(newBlog)
     db.session.add(newPost)
-    result={}
     try:
         db.session.commit()
-        result['message'] = 'Success'
+        result ='Success'
     except:
-        result['error'] = 'Database Commit Error'
+        result= 'Database Commit Error'
     
     return result

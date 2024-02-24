@@ -1,6 +1,8 @@
 from flask import Flask, jsonify, render_template
 from functionalities.displayAll import *
 from functionalities.createPost import *
+from functionalities.signUp import *
+
 from utils.db import db
 from utils.seed import *
 
@@ -18,16 +20,17 @@ this function is for displaying all the blog posts on opening the app
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html')
-    # return jsonify(display_all())
+    #return render_template('home.html')
+    return jsonify(display_all())
 
 @app.route('/login')
 def login():
     return render_template('login.html')
 
-@app.route('/signup')
+@app.route('/signup', methods=['POST'])
 def signup():
-    return render_template('signup.html')
+    return jsonify(sign_up())
+    #return render_template('signup.html')
 
 
 """
@@ -40,6 +43,6 @@ def create():
 
 if __name__ == '__main__':
     with app.app_context():
-        db.drop_all()
+        #db.drop_all()
         db.create_all()
     app.run(debug=True)
