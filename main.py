@@ -1,7 +1,9 @@
 from flask import Flask, jsonify, render_template, session
+from datetime import timedelta
 from functionalities.displayAll import *
 from functionalities.createPost import *
 from functionalities.signUp import *
+from functionalities.login import *
 
 from utils.db import db
 from utils.seed import *
@@ -10,7 +12,7 @@ SESSION_WILL_BE_VALID = 1  # day
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog_management.db'
-app.secret_key = config('DebmalyaArshia')
+app.secret_key = 'DebmalyaArshia'
 app.permanent_session_lifetime = timedelta(days=SESSION_WILL_BE_VALID)
 db.init_app(app)
 
@@ -29,7 +31,7 @@ def home():
     # return render_template('home.html', data=data, length = len(data))
     return jsonify(display_all())
 
-@app.route('/login')
+@app.route('/login', methods = ['POST'])
 def login():
     #return render_template('login.html')
     return jsonify(log_in())
