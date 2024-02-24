@@ -16,8 +16,8 @@
         <div class="text-white text-2xl font-bold">Bloggy</div>
         {% if flag==1 %}
         <a href="/login"><button class="text-white px-4 py-2 rounded">Login / Signup</button></a>
-        {% elif flag==0 %}
-        <button class="text-white px-4 py-2 rounded logout">Logout</button>
+        {% else %}
+        <a href="/logout"><button class="text-white px-4 py-2 rounded logout">Logout</button></a>
         {% endif %}
     </nav>
 
