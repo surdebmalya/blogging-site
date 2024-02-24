@@ -2,21 +2,23 @@ from flask import Flask, request, jsonify
 import json
 from utils.db import db, Blog, AllBlogs
 
-def display():
+def display_all():
     blogs = AllBlogs.query.all()
 
     result=[]
-    for blog in in blogs:
-        uname=blog.userName
-        bid=blog.blogId
-        blogData=Blog.query.get(bid)
+    for blog in blogs:
+        userName=blog.userName
+        blogId=blog.blogId
+        blogData=Blog.query.get(blogId)
         blogTitle=blogData.title
         blogBody=blogData.body
-        result.append(
-            "userName":uname,
-            "title": blogTitle,
-            "body":blogBody
-        )
+        blogImageURI=blogData.imageURI
+        post={}
+        post["userName"] = userName
+        post["title"] = blogTitle
+        post["body"] = blogBody
+        post["imageURI"] = blogImageURI
+        result.append(post)
     
-    reverse(result)
+    result = result[::-1]
     return result
