@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, session
+from flask import Flask, jsonify, render_template, session, redirect, url_for
 from datetime import timedelta
 from functionalities.displayAll import *
 from functionalities.createPost import *
@@ -30,9 +30,10 @@ def home():
     print(data)
     try:
         flag = session['userName']
-        flag = 1
-    except:
         flag = 0
+    except:
+        flag = 1
+    print(flag)
     return render_template('home.html', data=data, length = len(data), flag=flag)
     # return jsonify(display_all())
 
