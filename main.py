@@ -38,6 +38,10 @@ this function is for creating a new post for a logged in user
 def create():
     return jsonify(createPost())
 
+@app.route('/blog')
+def blog():
+    return render_template('blog.html')
+
 
 if __name__ == '__main__':
     with app.app_context():
