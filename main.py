@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, render_template
 from functionalities.displayAll import *
+from functionalities.createPost import *
 from utils.db import db
 from utils.seed import *
 
@@ -34,7 +35,7 @@ this function is for creating a new post for a logged in user
 """
 @app.route('/createPost', methods=['POST'])
 def create():
-    return jsonify(createPost())
+    return jsonify(create_post())
 
 
 if __name__ == '__main__':
