@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, session
 from utils.db import db, User
 
 def sign_up():
@@ -18,5 +18,7 @@ def sign_up():
         db.session.commit()
     else:
         return "ERROR"
+    
+    session["userName"]=userName
     return "Success!"
     
