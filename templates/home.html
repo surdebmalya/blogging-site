@@ -13,16 +13,35 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar p-4 flex justify-between items-center">
-        <a href="/"><div class="text-white text-2xl font-bold">Bloggy</div></a>
+        <a href="/">
+            <div class="text-white text-2xl font-bold">Bloggy</div>
+        </a>
         {% if "userName" in session %}
-        <a href="/logout"><button class="text-white px-4 py-2 rounded logout">Logout</button></a>
-        <a href="/logout"><button class="text-white px-4 py-2 rounded logout">
-            {{session["userName"][0]}}
-        </button></a>
+        <div class="flex items-center"> <!-- Added a div container for flex items -->
+            <div class="relative">
+                <button onclick="toggleDropdown()" class="text-white px-4 py-2 rounded-full bg-gray-800 hover:bg-gray-700">
+                {{session["userName"][0]}}
+                </button>
+                <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-40 bg-white border rounded shadow-md z-10">
+                    <a href="/logout" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">Logout</a>
+                    <a href="/my-blog" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">My Blogs</a>
+                    <a href="/write" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">Create Blog</a>
+                </div>
+            </div>
+        </div>
         {% else %}
         <a href="/login"><button class="text-white px-4 py-2 rounded">Login / Signup</button></a>
         {% endif %}
     </nav>
+
+    <script>
+        function toggleDropdown() {
+            var dropdownMenu = document.getElementById("dropdownMenu");
+            dropdownMenu.classList.toggle("hidden");
+        }
+    </script>
+
+
 
     <!-- Body -->
     <div class="container mx-auto mt-8 flex">

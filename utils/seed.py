@@ -1,5 +1,6 @@
 from flask import jsonify
 from utils.db import db, User, Blog, AllBlogs 
+from utils.dummyData import *
 
 def seeding_database():
     user_details = [
@@ -13,14 +14,7 @@ def seeding_database():
             'email': 'sur.debmalya@gmail.com',
             'password': '453@gjD'
 
-        },
-        {
-            'userName': 'Shikha', 
-            'email': 'roy.sikha123@gmail.com',
-            'password': 'fhD%48'
-
         }
-        
     ]
     
     for user_data in user_details:
@@ -37,16 +31,28 @@ def seeding_database():
     blog_details = [
         {
             'blogId': '1708776842.172973',
-            'title': 'Filmfare Award 2024',
-            'body': 'Vikrant Massey truly deserved the award for his acting in 12th Fail.',
+            'title': 'Spotlight, Glamour, and Glory: A Look Back at the 2024 Filmfare Awards',
+            'body': arshia[0],
             'imageURI': None
         },
         {
             'blogId': '1708776865.609455',
-            'title': '2024 Election',
-            'body': 'I am waiting for the results of the election.',
+            'title': 'A Look Inside Generative Adversarial Networks (GANs)',
+            'body': debmalya[0],
             'imageURI': None
         },
+        {
+            'blogId': '1708776866.609455',
+            'title': 'Life at IIT (ISM) Dhanbad',
+            'body': arshia[1],
+            'imageURI': None
+        },
+        {
+            'blogId': '1708776867.609455',
+            'title': 'Illuminating the Markets: Unveiling the Secrets of Candlestick Analysis',
+            'body': debmalya[1],
+            'imageURI': None
+        }
         
     ]
 
@@ -69,6 +75,14 @@ def seeding_database():
         {
             "userName": 'Debmalya',
             "blogId": '1708776865.609455'
+        },
+        {
+            "userName": 'Arshia',
+            "blogId": '1708776866.609455'
+        },
+        {
+            "userName": 'Debmalya',
+            "blogId": '1708776867.609455'
         }        
     ]
     for post_data in post_details:

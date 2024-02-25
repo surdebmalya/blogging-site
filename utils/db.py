@@ -13,9 +13,9 @@ class User(db.Model):
 # Blog table
 class Blog(db.Model):
     blogId = db.Column(db.String(50), primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
-    body = db.Column(db.String(1000), nullable=False)
-    imageURI = db.Column(db.String(50), nullable=True)
+    title = db.Column(db.String(500), nullable=False)
+    body = db.Column(db.String(10000), nullable=False)
+    imageURI = db.Column(db.String(500), nullable=True)
 
     blogsCreated = db.relationship('AllBlogs', backref='blog', cascade='all, delete-orphan')
 
