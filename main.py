@@ -6,6 +6,7 @@ from functionalities.signUp import *
 from functionalities.login import *
 from utils.db import db
 from utils.seed import *
+from utils.extra import *
 
 SESSION_WILL_BE_VALID = 1 # day
 
@@ -26,9 +27,8 @@ this function is for displaying all the blog posts on opening the app
 @app.route('/home')
 def home():
     data = display_all()
-    print(data)
+    data = shorten_text(data)
     return render_template('home.html', data=data, length = len(data))
-    # return jsonify(display_all())
 
 """
 this function will help to show the error message to the users
@@ -55,7 +55,6 @@ def login():
             return redirect(url_for("home"))
         else:
             return redirect(url_for("error"))
-    # return jsonify(log_in())
 
 """
 here all signup functionalities will be added
@@ -76,54 +75,48 @@ def signup():
             return redirect(url_for("home"))
         else:
             return redirect(url_for("error"))
-    # return jsonify(sign_up())
-
-"""
-render the blog
-"""
-@app.route('/blog')
-def blog():
-    return render_template('blog.html')
 
 """
 jot down all the writing activities
 """
-@app.route('/write', methods=['GET', 'POST'])
+@app.route('/write')
 def write():
-    if request.method == 'GET':
-        if "userName" in session:
-            return render_template('blog_create.html')
-        else:
-            return redirect(url_for("home"))
-    elif request.method == 'POST':
-        pass
+    if "userName" in session:
+        return render_template('blog_create.html')
+    else:
+        return redirect(url_for("home"))
 
-@app.route('/createPost', methods=['POST'])
-def create():
-    return jsonify(create_post())
+@app.route('/write', methods=['POST'])
+def posting():
+    userName = session['userName']
+    title = request.form["blogTitle"]
+    content = request.form["blogContent"]
+    imageURI = 'INVALID'
+    res = create_post(userName, title, content, imageURI)
+    if res=="SUCCESS":
+        return redirect(url_for("home"))
+    else:
+        return redirect(url_for("error"))
 
+"""
+blog rendering
+"""
 @app.route('/blog/<string:blogId>')
 def blog(blogId):
-    # author,title,body 
+    # author, title, body 
     blogs = AllBlogs.query.all()
-    print ("*************************************************")
-    print (blogs[0].userName)
     for blog in blogs:
         if blog.blogId== blogId:
             userName= blog.userName
             break
-
     blogDetail= Blog.query.get(blogId)
     title = blogDetail.title
     body = blogDetail.body
-
     return render_template('blog.html', title=title, author=userName, content=body)
-
 
 """
 logout
 """
-
 @app.route('/logout')
 def logout():
     if "userName" in session:

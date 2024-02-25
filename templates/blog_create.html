@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/blog.ico" type="image/x-icon">
     <link rel="stylesheet" href="/static/write.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <title>Bloggy - Create Blog</title>
@@ -23,17 +24,14 @@
 
     <!-- Blog Creation Form -->
     <div class="form-container">
-        <h1 class="text-2xl font-bold mb-4">Create a New Blog</h1>
-        <form>
-            <label for="blogTitle" class="block text-gray-700">Blog Title:</label>
-            <input type="text" id="blogTitle" name="blogTitle" class="form-input" placeholder="Enter your blog title"
+        <form method="post" action="/write">
+            <input type="text" id="blogTitle" name="blogTitle" class="form-input font-bold" placeholder="Enter your blog title"
                 required>
 
-            <label for="blogContent" class="block text-gray-700">Blog Content:</label>
-            <textarea id="blogContent" name="blogContent" class="form-textarea"
+            <textarea id="blogContent" name="blogContent" class="form-textarea font-bold"
                 placeholder="Write your blog content here" rows="6" required></textarea>
 
-            <button type="submit" class="create-button">Create Blog</button>
+            <button type="submit" class="create-button">Post Blog</button>
         </form>
     </div>
 

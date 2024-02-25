@@ -11,6 +11,14 @@ body {
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* margin: 20px; */
+    padding: 20px;
+}
+
+.blog-card-one-blog-showing {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin: 20px;
     padding: 20px;
 }
@@ -48,6 +56,11 @@ body {
 
 .navbar button:hover {
     background-color: #6b7280;
+}
+
+div button {
+    background-color: #4c51bf;
+    transition: background-color 0.3s ease;
 }
 
 .blog-card {
