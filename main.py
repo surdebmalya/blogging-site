@@ -4,6 +4,7 @@ from functionalities.displayAll import *
 from functionalities.createPost import *
 from functionalities.signUp import *
 from functionalities.login import *
+from functionalities.fetch import *
 from utils.db import db
 from utils.seed import *
 from utils.extra import *
@@ -114,6 +115,16 @@ def blog(blogId):
     body = blogDetail.body
     return render_template('blog.html', title=title, author=userName, content=body)
 
+@app.route('/my-blog')
+def myblog():
+    if "userName" in session:
+        userName= session["userName"]
+        res = fetch_for_single_user(userName)
+        res = shorten_text(res)
+        return render_template('home.html', data=res, length = len(res))
+    else:
+        return render_template('login.html')
+
 """
 logout
 """
@@ -127,6 +138,6 @@ def logout():
 
 if __name__ == '__main__':
     with app.app_context():
-        #db.drop_all()
+        db.drop_all()
         db.create_all()
     app.run(debug=True)
