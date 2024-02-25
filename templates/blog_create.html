@@ -24,14 +24,11 @@
 
     <!-- Blog Creation Form -->
     <div class="form-container">
-        <h1 class="text-2xl font-bold mb-4">Create a New Blog</h1>
-        <form>
-            <label for="blogTitle" class="block text-gray-700">Blog Title:</label>
-            <input type="text" id="blogTitle" name="blogTitle" class="form-input" placeholder="Enter your blog title"
+        <form method="post" action="/write">
+            <input type="text" id="blogTitle" name="blogTitle" class="form-input font-bold" placeholder="Enter your blog title"
                 required>
 
-            <label for="blogContent" class="block text-gray-700">Blog Content:</label>
-            <textarea id="blogContent" name="blogContent" class="form-textarea"
+            <textarea id="blogContent" name="blogContent" class="form-textarea font-bold"
                 placeholder="Write your blog content here" rows="6" required></textarea>
 
             <button type="submit" class="create-button">Create Blog</button>
