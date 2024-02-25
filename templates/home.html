@@ -19,8 +19,9 @@
         {% if "userName" in session %}
         <div class="flex items-center"> <!-- Added a div container for flex items -->
             <div class="relative">
-                <button onclick="toggleDropdown()" class="text-white px-4 py-2 rounded-full bg-gray-800 hover:bg-gray-700">
-                {{session["userName"][0]}}
+                <button onclick="toggleDropdown()"
+                    class="text-white px-4 py-2 rounded-full bg-gray-800 hover:bg-gray-700">
+                    {{session["userName"][0]}}
                 </button>
                 <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-40 bg-white border rounded shadow-md z-10">
                     <a href="/logout" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">Logout</a>
@@ -41,21 +42,29 @@
         }
     </script>
 
-
-
     <!-- Body -->
     <div class="container mx-auto mt-8 flex">
         <!-- Left Column for Blogs -->
         <div class="w-3/4 p-4">
+            <div id="length" data-value="{{ length }}"></div>
             <!-- Blog Render Section -->
             {% for i in range(length) %}
             <a href="/blog/{{data[i]['blogId']}}">
                 <div class="blog-card mb-4 p-6">
                     <h2 class="text-3xl font-bold mb-2">{{ data[i]['title'] }}</h2>
                     <p class="text-gray-600 mb-2">by {{ data[i]['userName'] }}</p>
-                    <p class="text-gray-600 mb-2">{{data[i]['body']}}</p>
+                    <p class="text-gray-600 mb-2" id="{{i}}" data-value="{{data[i]['body']}}"></p>
                 </div>
             </a>
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    var lengthElement = document.getElementById('length');
+                    var lengthValue = lengthElement.getAttribute('data-value');
+                    for (var i = 0; i < lengthValue; i++) {
+                        document.getElementById(i).innerHTML = document.getElementById(i).getAttribute('data-value');
+                    }
+                });
+            </script>
             {% endfor %}
 
             <!-- Pagination (if applicable) -->
