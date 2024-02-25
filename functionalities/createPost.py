@@ -2,12 +2,7 @@ from flask import Flask, request, jsonify
 from utils.db import db, Blog, AllBlogs
 import time
 
-def create_post():
-    data = request.get_json()
-    userName = data['userName']
-    title=data['title']
-    body=data['body']
-    imageURI=data['imageURI']
+def create_post(userName, title, body, imageURI):
     if imageURI == 'INVALID':
         imageURI= None
     blogId=time.time()
@@ -18,8 +13,8 @@ def create_post():
     db.session.add(newPost)
     try:
         db.session.commit()
-        result ='Success'
+        result ='SUCCESS'
     except:
-        result= 'Database Commit Error'
+        result= 'ERROR'
     
     return result

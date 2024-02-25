@@ -23,9 +23,10 @@ body {
 .navbar button:hover {
     background-color: #6b7280;
 }
+
 .form-container {
-    max-width: 600px;
-    margin: auto;
+    /* max-width: 600px; */
+    margin: 20px;
     padding: 20px;
     background-color: #ffffff;
     border-radius: 12px;
@@ -36,20 +37,21 @@ body {
 .form-input {
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #d2d6dc;
-    border-radius: 4px;
+    margin-bottom: 20px;
+    outline: none;
     box-sizing: border-box;
+    border: none;
+    font-size: 30px;
 }
 
 .form-textarea {
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #d2d6dc;
-    border-radius: 4px;
+    margin-bottom: 20px;
+    outline: none;
     box-sizing: border-box;
-    resize: vertical;
+    border: none;
+    font-size: 20px;
 }
 
 .create-button {
