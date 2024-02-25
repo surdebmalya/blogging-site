@@ -6,6 +6,7 @@ from functionalities.signUp import *
 from functionalities.login import *
 from utils.db import db
 from utils.seed import *
+from utils.extra import *
 
 SESSION_WILL_BE_VALID = 1 # day
 
@@ -26,6 +27,7 @@ this function is for displaying all the blog posts on opening the app
 @app.route('/home')
 def home():
     data = display_all()
+    data = shorten_text(data)
     return render_template('home.html', data=data, length = len(data))
 
 """
