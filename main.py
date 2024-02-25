@@ -29,6 +29,7 @@ this function is for displaying all the blog posts on opening the app
 def home():
     data = display_all()
     data = shorten_text(data)
+    print(data)
     return render_template('home.html', data=data, length = len(data))
 
 """
@@ -138,6 +139,6 @@ def logout():
 
 if __name__ == '__main__':
     with app.app_context():
-        db.drop_all()
+        # db.drop_all()
         db.create_all()
     app.run(debug=True)

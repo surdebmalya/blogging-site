@@ -1,6 +1,7 @@
 from flask import jsonify
 from utils.db import db, User, Blog, AllBlogs 
 from utils.dummyData import *
+import markdown
 
 def seeding_database():
     user_details = [
@@ -32,25 +33,25 @@ def seeding_database():
         {
             'blogId': '1708776842.172973',
             'title': 'Spotlight, Glamour, and Glory: A Look Back at the 2024 Filmfare Awards',
-            'body': arshia[0],
+            'body': markdown.markdown(arshia[0]),
             'imageURI': None
         },
         {
             'blogId': '1708776865.609455',
             'title': 'A Look Inside Generative Adversarial Networks (GANs)',
-            'body': debmalya[0],
+            'body': markdown.markdown(debmalya[0]),
             'imageURI': None
         },
         {
             'blogId': '1708776866.609455',
             'title': 'Life at IIT (ISM) Dhanbad',
-            'body': arshia[1],
+            'body': markdown.markdown(arshia[1]),
             'imageURI': None
         },
         {
             'blogId': '1708776867.609455',
             'title': 'Illuminating the Markets: Unveiling the Secrets of Candlestick Analysis',
-            'body': debmalya[1],
+            'body': markdown.markdown(debmalya[1]),
             'imageURI': None
         }
         

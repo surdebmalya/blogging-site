@@ -7,6 +7,33 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+h1 {
+    font-size: 30px; /* Equivalent to text-2xl in Tailwind CSS */
+    font-weight: bold; /* Equivalent to font-bold in Tailwind CSS */
+    padding-bottom: 20px;
+}
+
+/* Styling h2 tag */
+h2 {
+    font-size: 30px; /* Equivalent to text-xl in Tailwind CSS */
+    font-weight: bold; /* Equivalent to font-semibold in Tailwind CSS */
+    padding-bottom: 20px;
+}
+
+p {
+    padding-bottom: 20px;
+}
+
+/* Styling ul and li tags */
+ul {
+    padding-bottom: 20px;
+    list-style-type: disc; /* Equivalent to list-disc in Tailwind CSS */
+}
+
+li {
+    padding-bottom: 20px;
+}
+
 .blog-card {
     background-color: #ffffff;
     border-radius: 12px;
