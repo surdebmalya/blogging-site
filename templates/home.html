@@ -40,12 +40,33 @@
             var dropdownMenu = document.getElementById("dropdownMenu");
             dropdownMenu.classList.toggle("hidden");
         }
+
+        // Close dropdown on click outside
+        document.addEventListener("click", function (event) {
+            var dropdownMenu = document.getElementById("dropdownMenu");
+            if (event.target.closest(".relative") === null) {
+                dropdownMenu.classList.add("hidden");
+            }
+        });
     </script>
 
     <!-- Body -->
     <div class="container mx-auto mt-8 flex">
         <!-- Left Column for Blogs -->
         <div class="w-3/4 p-4">
+            {% if called_function=="myblog" %}
+            <h1 class="blog-title">My Blogs</h1>
+            {% elif called_function=="userblog" %}
+            {% if "userName" in session %}
+            {% if session["userName"] == data[0]['userName'] %}
+            <h1 class="blog-title">My Blogs</h1>
+            {% else %}
+            <h1 class="blog-title">{{data[0]['userName']}}'s Blogs</h1>
+            {% endif %}
+            {% else %}
+            <h1 class="blog-title">{{data[0]['userName']}}'s Blogs</h1>
+            {% endif %}
+            {% endif %}
             <div id="length" data-value="{{ length }}"></div>
             <!-- Blog Render Section -->
             {% for i in range(length) %}
@@ -76,10 +97,18 @@
 
         <!-- Right Column for Advertising (Sticky) -->
         <div class="w-1/4 p-4 sticky top-0">
-            <div class="promotion-card p-4 rounded">
-                <h3 class="text-lg font-semibold mb-2">Developers</h3>
-                <p class="text-gray-700">Debmalya Sur</p>
-                <p class="text-gray-700">Arshia Chaudhuri</p>
+            <div class="promotion-card p-4 rounded mb-4">
+                <h3 class="text-lg font-semibold mb-4">Developers</h3>
+                <p class="text-gray-700">
+                    <a href="https://linkedin.com/in/debmalya-sur/" target="_blank" class="underline">
+                        Debmalya Sur
+                    </a>
+                </p>
+                <p class="text-gray-700">
+                    <a href="https://www.linkedin.com/in/arshia-chaudhuri/" target="_blank" class="underline">
+                        Arshia Chaudhuri
+                    </a>
+                </p>
                 {% if "userName" in session %}
                 <div class="mb-2 mt-4">
                     <a href="/write"><button class="text-white px-4 py-2 rounded">Write A Blog</button></a>

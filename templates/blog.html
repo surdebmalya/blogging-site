@@ -39,11 +39,19 @@
             var dropdownMenu = document.getElementById("dropdownMenu");
             dropdownMenu.classList.toggle("hidden");
         }
+
+        // Close dropdown on click outside
+        document.addEventListener("click", function (event) {
+            var dropdownMenu = document.getElementById("dropdownMenu");
+            if (event.target.closest(".relative") === null) {
+                dropdownMenu.classList.add("hidden");
+            }
+        });
     </script>
 
     <div class="blog-card-one-blog-showing">
         <h1 class="blog-title">{{title}}</h1>
-        <p class="blog-author">Author - {{author}}</p>
+        <p class="blog-author">Author - <a class="underline" href="/user/{{author}}">{{author}}</a></p>
         <p class="blog-body" id="content" data-value="{{content}}"></p>
         <script>
             document.addEventListener("DOMContentLoaded", function () {

@@ -94,4 +94,4 @@ def seeding_database():
         db.session.add(new_post)
 
     db.session.commit()
-    return {'message': 'Success'}
+    return {'message': 'SUCCESS'}

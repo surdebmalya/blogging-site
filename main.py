@@ -19,7 +19,10 @@ db.init_app(app)
 
 @app.route('/seed')
 def seeding():
-    return jsonify(seeding_database())
+    try:
+        return jsonify(seeding_database())
+    except:
+        return jsonify({'message': 'Already seeded'})
 
 """
 this function is for displaying all the blog posts on opening the app
@@ -30,7 +33,7 @@ def home():
     data = display_all()
     data = shorten_text(data)
     print(data)
-    return render_template('home.html', data=data, length = len(data))
+    return render_template('home.html', data=data, length = len(data), called_function="home")
 
 """
 this function will help to show the error message to the users
@@ -122,9 +125,18 @@ def myblog():
         userName= session["userName"]
         res = fetch_for_single_user(userName)
         res = shorten_text(res)
-        return render_template('home.html', data=res, length = len(res))
+        return render_template('home.html', data=res, length = len(res), called_function="myblog")
     else:
         return render_template('login.html')
+
+@app.route('/user/<string:userName>')
+def userblog(userName):
+    try:
+        res = fetch_for_single_user(userName)
+        res = shorten_text(res)
+        return render_template('home.html', data=res, length = len(res), called_function="userblog")
+    except:
+        return redirect(url_for("error"))
 
 """
 logout

@@ -7,18 +7,19 @@
     <link rel="icon" href="/static/blog.ico" type="image/x-icon">
     <link rel="stylesheet" href="/static/write.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <title>Bloggy - Create Blog</title>
 </head>
 
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar p-4 flex justify-between items-center">
+    <header class="navbar p-4 flex justify-between items-center">
         <a href="/">
             <div class="text-white text-2xl font-bold">Bloggy</div>
         </a>
         {% if "userName" in session %}
-        <div class="flex items-center"> <!-- Added a div container for flex items -->
+        <div class="flex items-center">
             <div class="relative">
                 <button onclick="toggleDropdown()"
                     class="text-white px-4 py-2 rounded-full bg-gray-800 hover:bg-gray-700">
@@ -34,27 +35,36 @@
         {% else %}
         <a href="/login"><button class="text-white px-4 py-2 rounded">Login / Signup</button></a>
         {% endif %}
-    </nav>
+    </header>
 
     <script>
         function toggleDropdown() {
             var dropdownMenu = document.getElementById("dropdownMenu");
             dropdownMenu.classList.toggle("hidden");
         }
+
+        // Close dropdown on click outside
+        document.addEventListener("click", function (event) {
+            var dropdownMenu = document.getElementById("dropdownMenu");
+            if (event.target.closest(".relative") === null) {
+                dropdownMenu.classList.add("hidden");
+            }
+        });
     </script>
 
     <!-- Blog Creation Form -->
-    <div class="form-container">
+    <main class="form-container">
         <form method="post" action="/write">
             <input type="text" id="blogTitle" name="blogTitle" class="form-input font-bold" placeholder="Enter your blog title"
-                required>
+                required aria-label="Blog Title">
 
             <textarea id="blogContent" name="blogContent" class="form-textarea font-bold"
-                placeholder="Write your blog content here in markdown" rows="6" required></textarea>
+                placeholder="Write your blog content here in markdown" rows="6" required
+                aria-label="Blog Content"></textarea>
 
             <button type="submit" class="create-button">Post Blog</button>
         </form>
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer>
