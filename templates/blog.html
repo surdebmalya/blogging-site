@@ -67,6 +67,13 @@
             {% endif %}
             {% endif %}
         </div>
+
+        <!-- Render the Image -->
+        <div class="mx-auto">
+            <img src="https://random.imagecdn.app/1500/400" alt="Random Image"
+                class="w-full h-auto rounded-lg shadow-md">
+        </div>
+
         <p class="blog-body" id="content" data-value="{{content}}"></p>
         <script>
             document.addEventListener("DOMContentLoaded", function () {
@@ -112,7 +119,8 @@
             <div class="space-y-4">
                 <!-- Sample Comment -->
                 <div class="flex items-center bg-gray-100 p-4 rounded-lg">
-                    <div class="comment-name-circle flex-shrink-0 h-10 w-10 rounded-full flex items-center justify-center">
+                    <div
+                        class="comment-name-circle flex-shrink-0 h-10 w-10 rounded-full flex items-center justify-center">
                         <span class="text-white font-bold text-sm">J</span>
                     </div>
                     <div class="ml-4">
