@@ -71,6 +71,18 @@ li {
     background-color: #2a4365;
 }
 
+.write-button {
+    background-color: #4c51bf;
+}
+
+.write-button:hover {
+    background-color: #2a4365;
+}
+
+.comment-name-circle {
+    background-color: #2a4365;
+}
+
 .navbar button {
     background-color: #4c51bf;
     transition: background-color 0.3s ease;
