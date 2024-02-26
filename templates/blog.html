@@ -39,6 +39,14 @@
             var dropdownMenu = document.getElementById("dropdownMenu");
             dropdownMenu.classList.toggle("hidden");
         }
+
+        // Close dropdown on click outside
+        document.addEventListener("click", function (event) {
+            var dropdownMenu = document.getElementById("dropdownMenu");
+            if (event.target.closest(".relative") === null) {
+                dropdownMenu.classList.add("hidden");
+            }
+        });
     </script>
 
     <div class="blog-card-one-blog-showing">
